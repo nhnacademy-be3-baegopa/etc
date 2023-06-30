@@ -182,7 +182,7 @@ CREATE TABLE `menu_sub_menu` (
 	`menu_category_id`	BIGINT	NOT NULL,
 	`name`	VARCHAR(100)	NULL,
 	`order`	INT UNSIGNED	NOT NULL	DEFAULT 0,
-	`price`	INT	NULL
+	`price`	INT UNSIGNED	NULL
 );
 
 DROP TABLE IF EXISTS `menu_category`;
@@ -198,7 +198,7 @@ DROP TABLE IF EXISTS `option`;
 CREATE TABLE `option` (
 	`option_id`	BIGINT	NOT NULL,
 	`name`	VARCHAR(30)	NOT NULL,
-	`price`	BIGINT	NOT NULL,
+	`price`	INT UNSIGNED	NOT NULL,
 	`time`	TIME	NOT NULL	DEFAULT '00:00'
 );
 
@@ -350,7 +350,7 @@ CREATE TABLE `order_menu` (
 	`order_menu_id`	BIGINT	NOT NULL,
 	`store_menu_id`	BIGINT	NOT NULL,
 	`order_id`	BIGINT	NOT NULL,
-	`price`	INT	NOT NULL,
+	`price`	INT	UNSIGNED NOT NULL,
 	`name`	VARCHAR(50)	NOT NULL,
 	`count`	INT	UNSIGNED NOT NULL	DEFAULT 1
 );
@@ -511,7 +511,7 @@ DROP TABLE IF EXISTS `delivery_price`;
 
 CREATE TABLE `delivery_price` (
 	`delivery_price_id`	BIGINT	NOT NULL,
-	`price`	INT	NOT NULL
+	`price`	INT UNSIGNED	NOT NULL
 );
 
 DROP TABLE IF EXISTS `reward_point_type`;
