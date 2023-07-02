@@ -1,6 +1,6 @@
-drop DATABASE if exists baegopa_api_dev;
-create DATABASE baegopa_api_dev;
-use baegopa_api_dev;
+drop DATABASE if exists baegopa_store_dev;
+create DATABASE baegopa_store_dev;
+use baegopa_store_dev;
 
 DROP TABLE IF EXISTS `user`;
 
