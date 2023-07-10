@@ -2,7 +2,6 @@ drop DATABASE if exists baegopa_store_dev;
 create DATABASE baegopa_store_dev;
 use baegopa_store_dev;
 
-
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
@@ -108,8 +107,8 @@ DROP TABLE IF EXISTS `store_category`;
 CREATE TABLE `store_category`
 (
 
-    `store_category_id` BIGINT      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '매장 카테고리 식별번호',
-    `name`              VARCHAR(30) NOT NULL COMMENT '매장 카테고리 이름'
+    `store_category_code` char(2)     NOT NULL PRIMARY KEY COMMENT '매장 카테고리 코드',
+    `name`                VARCHAR(30) NOT NULL COMMENT '매장 카테고리 이름'
 );
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu`
@@ -458,9 +457,9 @@ DROP TABLE IF EXISTS `store_store_category`;
 CREATE TABLE `store_store_category`
 (
 
-    `store_store_category_id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '매장 매장 카테고리 식별번호',
-    `store_category_id`       BIGINT NOT NULL COMMENT '매장 카테고리 식별번호',
-    `store_id`                BIGINT NOT NULL COMMENT '매장 식별번호'
+    `store_store_category_id` BIGINT  NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '매장 매장 카테고리 식별번호',
+    `store_category_code`     char(2) NOT NULL COMMENT '매장 카테고리 코드',
+    `store_id`                BIGINT  NOT NULL COMMENT '매장 식별번호'
 );
 DROP TABLE IF EXISTS `sub_menu_category`;
 CREATE TABLE `sub_menu_category`
@@ -483,6 +482,8 @@ CREATE TABLE `store_business_info`
     `established_date`       DATE         NOT NULL COMMENT '사업자 등록 개업연월일',
     `business_name`          VARCHAR(100) NOT NULL COMMENT '상호명'
 );
+
+
 
 ALTER TABLE `user`
     ADD CONSTRAINT FOREIGN KEY (user_rank_code) REFERENCES `user_rank` (`user_rank_code`);
@@ -590,8 +591,6 @@ ALTER TABLE `store_menu`
     ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES `store` (`store_id`);
 ALTER TABLE `store_menu`
     ADD CONSTRAINT FOREIGN KEY (menu_id) REFERENCES `menu` (`menu_id`);
-
-
 
 ALTER TABLE `point`
     ADD CONSTRAINT FOREIGN KEY (user_id) REFERENCES `user` (`user_id`);
@@ -710,7 +709,7 @@ ALTER TABLE `user_menu_sub_menu`
 
 
 ALTER TABLE `store_store_category`
-    ADD CONSTRAINT FOREIGN KEY (store_category_id) REFERENCES `store_category` (`store_category_id`);
+    ADD CONSTRAINT FOREIGN KEY (store_category_code) REFERENCES `store_category` (`store_category_code`);
 ALTER TABLE `store_store_category`
     ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES `store` (`store_id`);
 
