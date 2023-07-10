@@ -228,7 +228,6 @@ CREATE TABLE `store_menu`
     `menu_id`       BIGINT  NOT NULL COMMENT '메뉴 식별번호',
     `is_sold_out`   BOOLEAN NOT NULL DEFAULT FALSE COMMENT '판매 가능 여부'
 );
-
 DROP TABLE IF EXISTS `point`;
 CREATE TABLE `point`
 (
@@ -285,7 +284,6 @@ CREATE TABLE `pay_type`
     `pay_type_code` CHAR(2)     NOT NULL PRIMARY KEY COMMENT '결제 방법 코드',
     `name`          VARCHAR(20) NOT NULL COMMENT '이름'
 );
-
 DROP TABLE IF EXISTS `pay_status`;
 CREATE TABLE `pay_status`
 (
@@ -316,7 +314,6 @@ CREATE TABLE `review`
     `grade`            INT      NOT NULL DEFAULT 1 COMMENT '평점',
     `write_datetime`   DATETIME NOT NULL DEFAULT now() COMMENT '작성일시'
 );
-
 DROP TABLE IF EXISTS `order_menu_option`;
 CREATE TABLE `order_menu_option`
 (
@@ -478,15 +475,14 @@ DROP TABLE IF EXISTS `store_business_info`;
 CREATE TABLE `store_business_info`
 (
 
-    `store_id`            BIGINT       NOT NULL PRIMARY KEY COMMENT '매장 식별번호',
-    `registration_number` CHAR(10)     NOT NULL COMMENT '사업자 등록 번호',
-    `representative`      VARCHAR(50)  NOT NULL COMMENT '사업자 등록 대표자 이름',
-    `established_date`    CHAR(8)      NOT NULL COMMENT '사업자 등록 개업연월일',
-    `business_name`       VARCHAR(100) NULL COMMENT '상호명',
-    `image_id`            BIGINT       NOT NULL COMMENT '이미지 식별번호'
+    `store_business_info_id` BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '사업자정보 식별번호',
+    `store_id`               BIGINT       NOT NULL COMMENT '매장 식별번호',
+    `image_id`               BIGINT       NOT NULL COMMENT '사업자 등록증 이미지 식별번호',
+    `registration_number`    CHAR(10)     NOT NULL COMMENT '사업자 등록 번호',
+    `representative`         VARCHAR(50)  NOT NULL COMMENT '사업자 등록 대표자 이름',
+    `established_date`       DATE         NOT NULL COMMENT '사업자 등록 개업연월일',
+    `business_name`          VARCHAR(100) NOT NULL COMMENT '상호명'
 );
-
-
 
 ALTER TABLE `user`
     ADD CONSTRAINT FOREIGN KEY (user_rank_code) REFERENCES `user_rank` (`user_rank_code`);
@@ -596,6 +592,7 @@ ALTER TABLE `store_menu`
     ADD CONSTRAINT FOREIGN KEY (menu_id) REFERENCES `menu` (`menu_id`);
 
 
+
 ALTER TABLE `point`
     ADD CONSTRAINT FOREIGN KEY (user_id) REFERENCES `user` (`user_id`);
 ALTER TABLE `point`
@@ -623,6 +620,7 @@ ALTER TABLE `pay`
     ADD CONSTRAINT FOREIGN KEY (pay_type_code) REFERENCES `pay_type` (`pay_type_code`);
 ALTER TABLE `pay`
     ADD CONSTRAINT FOREIGN KEY (pay_status_code) REFERENCES `pay_status` (`pay_status_code`);
+
 
 ALTER TABLE `menu_review`
     ADD CONSTRAINT FOREIGN KEY (image_id) REFERENCES `image` (`image_id`);
@@ -685,8 +683,6 @@ ALTER TABLE `review_image`
 
 ALTER TABLE `order_coupon`
     ADD CONSTRAINT FOREIGN KEY (order_id) REFERENCES `order` (`order_id`);
-
-
 ALTER TABLE `user_issue_coupon`
     ADD CONSTRAINT FOREIGN KEY (user_id) REFERENCES `user` (`user_id`);
 
@@ -703,6 +699,7 @@ ALTER TABLE `user_menu_option`
     ADD CONSTRAINT FOREIGN KEY (user_menu_id) REFERENCES `user_menu` (`user_menu_id`);
 ALTER TABLE `user_menu_option`
     ADD CONSTRAINT FOREIGN KEY (menu_option_id) REFERENCES `menu_option` (`menu_option_id`);
+
 
 
 ALTER TABLE `user_menu_sub_menu`
@@ -726,8 +723,5 @@ ALTER TABLE `sub_menu_category`
 
 ALTER TABLE `store_business_info`
     ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES `store` (`store_id`);
-
-
-
 ALTER TABLE `store_business_info`
     ADD CONSTRAINT FOREIGN KEY (image_id) REFERENCES `image` (`image_id`);
