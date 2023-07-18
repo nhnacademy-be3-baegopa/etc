@@ -86,7 +86,7 @@ CREATE TABLE `issue_coupon`
 
     `issue_coupon_id`  BIGINT   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '발급쿠폰 식별번호',
     `coupon_policy_id` BIGINT   NOT NULL COMMENT '쿠폰 정책 식별번호',
-    `issue_datetime`   DATETIME NOT NULL DEFAULT now() COMMENT '발급일시',
+    `issue_datetime`   DATETIME NULL COMMENT '발급일시',
     `use_datetime`     DATETIME NULL COMMENT '사용일시'
 );
 DROP TABLE IF EXISTS `banner`;
