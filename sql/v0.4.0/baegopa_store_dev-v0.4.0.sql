@@ -232,7 +232,6 @@ CREATE TABLE `store_menu`
     `is_sold_out`   BOOLEAN NOT NULL DEFAULT FALSE COMMENT '판매 가능 여부',
     `is_delete`     BOOLEAN NOT NULL DEFAULT FALSE COMMENT '삭제여부'
 );
-
 DROP TABLE IF EXISTS `point`;
 CREATE TABLE `point`
 (
@@ -289,6 +288,7 @@ CREATE TABLE `pay_type`
     `pay_type_code` CHAR(2)     NOT NULL PRIMARY KEY COMMENT '결제 방법 코드',
     `name`          VARCHAR(20) NOT NULL COMMENT '이름'
 );
+
 DROP TABLE IF EXISTS `pay_status`;
 CREATE TABLE `pay_status`
 (
@@ -314,7 +314,8 @@ CREATE TABLE `review`
     `review_id`        BIGINT   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '리뷰 식별번호',
     `parent_review_id` BIGINT   NULL COMMENT '부모 리뷰 식별번호',
     `user_id`          BIGINT   NOT NULL COMMENT '회원식별번호',
-    `store_id`         BIGINT   NOT NULL COMMENT '주문 식별번호',
+    `store_id`         BIGINT   NOT NULL COMMENT '매장 식별번호',
+    `order_id`         BIGINT   NOT NULL COMMENT '주문 식별번호',
     `content`          TEXT     NOT NULL COMMENT '내용',
     `grade`            INT      NOT NULL DEFAULT 1 COMMENT '평점',
     `write_datetime`   DATETIME NOT NULL DEFAULT now() COMMENT '작성일시'
@@ -648,6 +649,8 @@ ALTER TABLE `review`
     ADD CONSTRAINT FOREIGN KEY (user_id) REFERENCES `user` (`user_id`);
 ALTER TABLE `review`
     ADD CONSTRAINT FOREIGN KEY (store_id) REFERENCES `store` (`store_id`);
+ALTER TABLE `review`
+    ADD CONSTRAINT FOREIGN KEY (order_id) REFERENCES `order` (`order_id`);
 
 
 
@@ -728,5 +731,9 @@ ALTER TABLE `store_business_info`
 
 ALTER TABLE `order_menu_option`
     ADD CONSTRAINT FOREIGN KEY (order_menu_id) REFERENCES `order_menu` (`order_menu_id`);
+
+
+
+
 
 
