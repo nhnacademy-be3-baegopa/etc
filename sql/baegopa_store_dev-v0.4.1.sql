@@ -729,4 +729,4 @@ ALTER TABLE `store_business_info`
 ALTER TABLE `order_menu_option`
     ADD CONSTRAINT FOREIGN KEY (order_menu_id) REFERENCES `order_menu` (`order_menu_id`);
 
-
+ALTER TABLE `order_menu_sub_menu` add column `count` INT UNSIGNED  NOT NULL Default 1;
