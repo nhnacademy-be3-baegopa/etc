@@ -135,6 +135,9 @@ ALTER TABLE `user_issue_coupon`
 ALTER TABLE `coupon_policy_coupon_bound`
     ADD CONSTRAINT FOREIGN KEY (coupon_policy_id) REFERENCES `coupon_policy` (`coupon_policy_id`);
 
+ALTER TABLE `coupon_price_policy` add column `image_id` BIGINT NULL COMMENT '이미지 식별버호';
+ALTER TABLE `coupon_policy` drop column `image_id`;
+
 
 
 
