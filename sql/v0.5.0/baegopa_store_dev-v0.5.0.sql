@@ -779,3 +779,6 @@ DELIMITER ;
 
 ALTER TABLE `menu_search` ADD FULLTEXT INDEX `description_idx` (`description`) COMMENT 'tokenizer "TokenBigramIgnoreBlankSplitSymbolAlphaDigit"';
 ALTER TABLE `menu_search` ADD FULLTEXT INDEX `name_idx` (`name`) COMMENT 'tokenizer "TokenMecab"';
+
+ALTER TABLE `pay` add column `order_state_history_id` BIGINT NULL COMMENT '주문 상태 변경이력 식별번호';
+ALTER TABLE `pay` ADD CONSTRAINT FOREIGN KEY (order_state_history_id) REFERENCES `order_state_history` (`order_state_history_id`);
