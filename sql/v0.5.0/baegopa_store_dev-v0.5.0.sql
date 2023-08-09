@@ -782,3 +782,5 @@ ALTER TABLE `menu_search` ADD FULLTEXT INDEX `name_idx` (`name`) COMMENT 'tokeni
 
 ALTER TABLE `pay` add column `order_state_history_id` BIGINT NULL COMMENT '주문 상태 변경이력 식별번호';
 ALTER TABLE `pay` ADD CONSTRAINT FOREIGN KEY (order_state_history_id) REFERENCES `order_state_history` (`order_state_history_id`);
+
+ALTER TABLE `user_anniversary` ADD UNIQUE (`user_id`, `anniversary_type_code`);
