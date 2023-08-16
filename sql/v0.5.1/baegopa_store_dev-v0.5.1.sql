@@ -789,3 +789,5 @@ ALTER TABLE `user_anniversary` ADD UNIQUE (`user_id`, `anniversary_type_code`);
 ALTER TABLE `order` add column `total_amount` INT UNSIGNED NOT NULL Default 0 COMMENT '할인 전 총 주문 금액';
 ALTER TABLE `order` add column `use_point` INT UNSIGNED NOT NULL Default 0 COMMENT '사용 포인트';
 ALTER TABLE `order` add column `use_coupon_amount` INT UNSIGNED NOT NULL Default 0 COMMENT '쿠폰 할인금액';
+
+ALTER TABLE `menu_review` add column `write_datetime` DATETIME NOT NULL Default now() COMMENT '작성일시';
