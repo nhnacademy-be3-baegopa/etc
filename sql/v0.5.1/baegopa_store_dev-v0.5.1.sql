@@ -793,3 +793,5 @@ ALTER TABLE `order` add column `use_coupon_amount` INT UNSIGNED NOT NULL Default
 ALTER TABLE `menu_review` add column `write_datetime` DATETIME NOT NULL Default now() COMMENT '작성일시';
 
 ALTER TABLE `order_coupon` add column `use_coupon_amount` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '쿠폰 할인금액';
+
+ALTER TABLE `image` add column `image_key` VARCHAR(255) NOT NULL COMMENT '이미지키';
