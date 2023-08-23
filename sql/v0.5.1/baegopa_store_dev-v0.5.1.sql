@@ -791,3 +791,5 @@ ALTER TABLE `order` add column `use_point` INT UNSIGNED NOT NULL Default 0 COMME
 ALTER TABLE `order` add column `use_coupon_amount` INT UNSIGNED NOT NULL Default 0 COMMENT '쿠폰 할인금액';
 
 ALTER TABLE `menu_review` add column `write_datetime` DATETIME NOT NULL Default now() COMMENT '작성일시';
+
+ALTER TABLE `order_coupon` add column `use_coupon_amount` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '쿠폰 할인금액';
